@@ -3,16 +3,13 @@ auth:
   providers:
     guest:
       dangerouslyAllowOutsideDevelopment: true
-    # github:
-    #   development:
-    #     clientId: ${AUTH_GITHUB_CLIENT_ID}
-    #     clientSecret: ${AUTH_GITHUB_CLIENT_SECRET}
-
-# integrations:
-#   github:
-#     - host: github.com
-#       apps:
-#         - $include: github-app-credentials.yaml
+    github:
+      development:
+        clientId: ${AUTH_GITHUB_CLIENT_ID}
+        clientSecret: ${AUTH_GITHUB_CLIENT_SECRET}
+        signIn:
+          resolvers:
+            - resolver: usernameMatchingUserEntityName
 
 app:
   title: RHDH
@@ -85,3 +82,13 @@ techdocs:
     type: local
     local:
       publishDirectory: /tmp/techdocs
+
+## AI Learning path proxy endpoint
+proxy:
+  endpoints:
+    "/developer-hub":
+      target: https://raw.githubusercontent.com
+      pathRewrite:
+        "^/api/proxy/developer-hub/learning-paths": "/redhat-developer/rhdh-plugins/refs/heads/main/workspaces/ai-integrations/plugins/ai-experience/src/learning-paths/data.json"
+      changeOrigin: true
+      secure: true
