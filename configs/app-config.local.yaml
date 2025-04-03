@@ -30,12 +30,21 @@ backend:
     methods: [GET, HEAD, PATCH, POST, PUT, DELETE]
     credentials: true
   csp:
-   upgrade-insecure-requests: false
+    upgrade-insecure-requests: false
+    img-src:
+      # "'self'" and 'data' are from the backstage default but must be set since img-src is overwritten
+      - "'self'"
+      - "data:"
+      - https://upload.wikimedia.org
+      - https://podman-desktop.io
+      - https://argo-cd.readthedocs.io
+      - https://instructlab.ai
+      - https://quay.io
 
-# comment out the following 'database' section to use the PostgreSQL database
+  # comment out the following 'database' section to use the PostgreSQL database
   database:
     client: better-sqlite3
-    connection: ':memory:'
+    connection: ":memory:"
 
   auth:
     keys:
@@ -43,7 +52,6 @@ backend:
 
 # You can use local files from catalog-entities directory to load entities into the catalog
 catalog:
-
   rules:
     - allow: [Component, API, Location, Template, Domain, User, Group, System, Resource]
 
@@ -56,11 +64,18 @@ catalog:
       target: /opt/app-root/src/configs/catalog-entities/components.yaml
       rules:
         - allow: [Component, System]
-    # - type: url
-    #   target: https://github.com/backstage/backstage/blob/master/packages/catalog-model/examples/all.yaml
-    #   rules:
-    #     - allow: [Component, User, Group, Domain]
-
+    - type: url
+      target: https://github.com/redhat-ai-dev/model-catalog-example/blob/v0.1/developer-model-service/catalog-info.yaml
+      rules:
+        - allow: [Component, Resource, Api]
+    - type: url
+      target: https://github.com/redhat-ai-dev/model-catalog-example/blob/v0.1/ollama-model-service/catalog-info.yaml
+      rules:
+        - allow: [Component, Resource, Api]
+    - type: url
+      target: https://github.com/redhat-ai-dev/ai-lab-template/blob/release-v0.9.x/all.yaml
+      rules:
+        - allow: [Template]
 
 techdocs:
   generator:
