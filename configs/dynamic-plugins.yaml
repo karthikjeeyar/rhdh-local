@@ -1,8 +1,8 @@
 includes:
   - dynamic-plugins.default.yaml
 plugins:
-  # - package: ./dynamic-plugins/dist/red-hat-developer-hub-backstage-plugin-dynamic-home-page
-  #   disabled: true
+  - package: ./dynamic-plugins/dist/red-hat-developer-hub-backstage-plugin-dynamic-home-page
+    disabled: true
   - package: ./dynamic-plugins/dist/red-hat-developer-hub-backstage-plugin-global-header
     disabled: true
   - package: oci://quay.io/karthik_jk/global-header:latest!red-hat-developer-hub-backstage-plugin-global-header
@@ -166,7 +166,7 @@ plugins:
                     title: Openshift
                     icon: https://upload.wikimedia.org/wikipedia/commons/d/d8/Red_Hat_logo.svg
                     link: https://www.redhat.com/en/technologies/cloud-computing/openshift
-  - package: oci://quay.io/karthik_jk/ai-experience:latest!red-hat-developer-hub-backstage-plugin-ai-experience
+  - package: oci://quay.io/karthik_jk/ai-experience:1.5!red-hat-developer-hub-backstage-plugin-ai-experience
     disabled: false
     pluginConfig:
       dynamicPlugins:
@@ -175,5 +175,5 @@ plugins:
             dynamicRoutes:
               - path: /
                 importName: AiExperiencePage
-  - package: oci://quay.io/karthik_jk/ai-experience:latest!red-hat-developer-hub-backstage-plugin-ai-experience-backend-dynamic
+  - package: oci://quay.io/karthik_jk/ai-experience:1.5!red-hat-developer-hub-backstage-plugin-ai-experience-backend-dynamic
     disabled: false
