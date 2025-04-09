@@ -30,12 +30,16 @@ backend:
     methods: [GET, HEAD, PATCH, POST, PUT, DELETE]
     credentials: true
   csp:
-   upgrade-insecure-requests: false
-
-# comment out the following 'database' section to use the PostgreSQL database
+    upgrade-insecure-requests: false
+    img-src:
+      # "'self'" and 'data' are from the backstage default but must be set since img-src is overwritten
+      - "'self'"
+      - "data:"
+      - https://img.freepik.com
+  # comment out the following 'database' section to use the PostgreSQL database
   database:
     client: better-sqlite3
-    connection: ':memory:'
+    connection: ":memory:"
 
   auth:
     keys:
@@ -43,7 +47,6 @@ backend:
 
 # You can use local files from catalog-entities directory to load entities into the catalog
 catalog:
-
   rules:
     - allow: [Component, API, Location, Template, Domain, User, Group, System, Resource]
 
@@ -61,7 +64,6 @@ catalog:
     #   rules:
     #     - allow: [Component, User, Group, Domain]
 
-
 techdocs:
   generator:
     runIn: local
@@ -70,3 +72,9 @@ techdocs:
     type: local
     local:
       publishDirectory: /tmp/techdocs
+
+lightspeed:
+  servers:
+    - id: ${LIGHTSPEED_SERVER_ID}
+      url: ${LIGHTSPEED_SERVER_URL}
+      token: ${LIGHTSPEED_SERVER_TOKEN}
