@@ -37,6 +37,7 @@ backend:
       - https://argo-cd.readthedocs.io
       - https://instructlab.ai
       - https://quay.io
+      - https://media.wired.com
 
   # comment out the following 'database' section to use the PostgreSQL database
   database:
@@ -92,3 +93,7 @@ proxy:
         "^/api/proxy/developer-hub/learning-paths": "/redhat-developer/rhdh-plugins/refs/heads/main/workspaces/ai-integrations/plugins/ai-experience/src/learning-paths/data.json"
       changeOrigin: true
       secure: true
+    "/ai-rssfeed":
+      target: "https://www.wired.com/feed/tag/ai/latest/rss"
+      changeOrigin: true
+      followRedirects: true
