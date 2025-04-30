@@ -1,7 +1,7 @@
 includes:
   - dynamic-plugins.default.yaml
 plugins:
-  - package: oci://quay.io/karthik_jk/lightspeed:stable!red-hat-developer-hub-backstage-plugin-lightspeed
+  - package: oci://quay.io/karthik_jk/lightspeed:0dbd3bf!red-hat-developer-hub-backstage-plugin-lightspeed
     disabled: false
     pluginConfig:
       dynamicPlugins:
@@ -18,5 +18,5 @@ plugins:
                 menuItem:
                   icon: LightspeedIcon
                   text: Lightspeed
-  - package: oci://quay.io/karthik_jk/lightspeed:stable!red-hat-developer-hub-backstage-plugin-lightspeed-backend-dynamic
+  - package: oci://quay.io/karthik_jk/lightspeed:0dbd3bf!red-hat-developer-hub-backstage-plugin-lightspeed-backend-dynamic
     disabled: false
